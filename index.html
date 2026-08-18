@@ -3,65 +3,362 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ANIMA GAME — si gioca su animagame.io</title>
-<meta name="description" content="ANIMA GAME vive su animagame.io.">
-<!-- Il gioco è VIVO da giorni su animagame.io. Questa pagina diceva «Presto qui»
-     e mandava via chi arrivava convinto che non esistesse ancora niente.
-     Un prodotto, un indirizzo vero; gli altri sono porte. — D.R.A.G.O., 2026-08-06 -->
-<link rel="canonical" href="https://animagame.io/">
-<meta http-equiv="refresh" content="0; url=https://animagame.io/">
+<title>ANIMA APP — una persona. Una sola. Per sempre.</title>
+<meta name="description" content="ANIMA APP nasce da ANIMA GAME: chi è dentro può far entrare una persona sola, per sempre. Qui c'è la regola e il conto dei raddoppi. Niente lista d'attesa, niente da scaricare.">
+
+<!--
+  PERCHÉ ESISTE QUESTA PAGINA
+  ---------------------------
+  Fino a oggi, 8 agosto 2026, anima.solar era una PORTA: un redirect (meta refresh +
+  location.replace) che rimbalzava su animagame.io, con la tavolozza ambra della Camera
+  Oscura — cioè fuori canone due volte: l'ambra è la casa Fine Art, non l'agenzia; e un
+  indirizzo che rimbalza non ha niente da dire.
+
+  Ordine del Direttore dell'08/08: anima.solar resta, non rimanda più da nessuna parte,
+  ed è INDIPENDENTE dalla galassia pur restandone riconoscibile (nero e verde ANIMA,
+  stessi caratteri, footer di costellazione). Annuncia ANIMA APP: un progetto da
+  sviluppare da zero sulla base di ANIMA GAME.
+
+  COSA HA SOSTITUITO: l'intero file precedente (redirect + ambra). Riscritto da zero,
+  non ritinto. Nessun meta refresh, nessun canonical altrove, nessun form, nessun
+  tracker, nessuna chiamata a domini terzi: i caratteri sono quelli di sistema, così
+  «nessun programma ti segue mentre leggi» resta vero anche tecnicamente.
+
+  SUL 2027: la forma vietata è «promessa + data». Qui 2027 non è la data in cui
+  consegniamo, è la data PRIMA DELLA QUALE non cominciamo — un pavimento, non una
+  scadenza. Regola per chi tocca questa pagina: 2027 può stare solo alla sinistra di
+  una negazione. «Non prima del 2027» sì · «dal 2027» no · «nel 2027» no.
+
+  Il file CNAME non è stato toccato.
+-->
+
 <style>
   :root{
-    --bg-deep:#0C0B0E; --amber:#C9A15E; --verde:#38E08A;
-    --text-hi:#ECE7DF; --text-lo:#A7A29B; --line:#3A3730;
+    --nero:#0A0A0A;
+    --fondo:#121210;
+    --carta:#F7F7F2;
+    --muto:#8F8A82;
+    --linea:#2A2A26;
+    --polvere:#C9C5B8;
+    --verde:#38E08A;
+
+    --display:"Anton","Haettenschweiler","Arial Narrow",Impact,"Franklin Gothic Medium",sans-serif;
+    --serif:"Newsreader","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --mono:"Share Tech Mono",ui-monospace,"Courier New","Lucida Console",monospace;
+
+    --ratio:2.35;
   }
+
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
+
+  html{-webkit-text-size-adjust:100%}
+
   body{
-    background:var(--bg-deep); color:var(--text-hi);
-    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
-    display:flex; align-items:center; justify-content:center;
-    text-align:center; padding:2rem;
-    background-image:radial-gradient(ellipse at 50% 38%, rgba(201,161,94,.07), transparent 62%);
+    background:var(--nero);
+    color:var(--carta);
+    font-family:var(--serif);
+    font-size:clamp(1.08rem,.98rem + .55vw,1.32rem);
+    line-height:1.75;
+    letter-spacing:.005em;
+    overflow-x:hidden;
   }
-  main{max-width:36rem}
-  .marca{
-    font-family:"Courier Prime","Courier New",monospace;
-    letter-spacing:.35em; font-size:.85rem; color:var(--amber);
-    text-transform:uppercase; margin-bottom:1.4rem;
+
+  /* grana ~3% + vignetta: la stessa pelle di animagame.io, senza file esterni */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:2;pointer-events:none;
+    opacity:.03;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23g)'/></svg>");
   }
-  h1{font-size:clamp(1.7rem,5vw,2.5rem); font-weight:400; letter-spacing:.03em; line-height:1.35; margin-bottom:1rem}
-  h1 b{color:var(--amber); font-weight:400}
-  .riga{width:3.5rem; height:1px; background:var(--line); margin:1.5rem auto}
-  p{color:var(--text-lo); line-height:1.7; font-size:1.02rem}
-  .porta{
-    display:inline-block; margin-top:2rem; padding:.7rem 1.5rem;
-    border:1px solid var(--verde); border-radius:2px;
-    font-family:"Courier Prime","Courier New",monospace;
-    font-size:.85rem; letter-spacing:.2em; color:var(--verde); text-decoration:none;
+  body::after{
+    content:"";position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(ellipse at 50% 42%, transparent 46%, rgba(0,0,0,.55) 100%);
   }
-  .porta:hover{background:rgba(56,224,138,.08)}
+  main{position:relative;z-index:3}
+
+  /* ---- grammatica 2.35 : ogni sezione è una banda, il letterbox è il segno ---- */
+  .band{
+    min-height:calc(100vw / var(--ratio));
+    display:flex;align-items:center;
+    padding:clamp(3.2rem,8vw,6rem) clamp(1.3rem,5vw,3rem);
+    border-top:1px solid var(--linea);
+  }
+  .band:first-of-type{border-top:0}
+  .band > .inner{width:100%;max-width:60ch;margin:0 auto}
+  .band.dato{background:var(--fondo);border-block:1px solid var(--verde)}
+
+  /* ---- etichette: la macchina parla solo quando espone dati ---- */
+  .tag{
+    font-family:var(--mono);
+    font-size:.78rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--verde);
+    margin-bottom:clamp(1.4rem,3vw,2.2rem);
+  }
+  .tag.grigio{color:var(--muto)}
+
+  /* ---- i tre titoli soli ---- */
+  h1{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(2.3rem,1.1rem + 7vw,5.2rem);
+    line-height:1.02;
+    letter-spacing:.012em;
+    text-transform:uppercase;
+    margin-bottom:clamp(1.6rem,4vw,2.6rem);
+  }
+
+  h2{
+    font-family:var(--mono);
+    font-size:1rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--verde);
+    margin-bottom:clamp(1.4rem,3vw,2.2rem);
+  }
+
+  p{margin-bottom:1.5rem;max-width:60ch}
+  p:last-child{margin-bottom:0}
+  strong{color:var(--carta);font-weight:600}
+  .secondario{color:var(--muto)}
+
+  /* ---- massime: nere, polvere, centrate, dissolvenza lenta ---- */
+  .massima{text-align:center;justify-content:center}
+  .massima blockquote{
+    font-family:var(--serif);
+    font-size:clamp(1.5rem,1rem + 3vw,2.6rem);
+    line-height:1.35;
+    color:var(--polvere);
+    max-width:26ch;margin:0 auto;
+    font-style:italic;
+    opacity:0;transform:translateY(14px);
+    transition:opacity 900ms ease,transform 900ms ease;
+  }
+  .massima blockquote.vista{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .massima blockquote{opacity:1;transform:none;transition:none}
+  }
+
+  /* ---- il conto: mono, incolonnato, senza colore e senza grassetto ---- */
+  .conto{
+    font-family:var(--mono);
+    font-size:clamp(.95rem,.85rem + .5vw,1.15rem);
+    line-height:2.1;
+    color:var(--carta);
+    margin:clamp(1.8rem,4vw,2.6rem) 0;
+    border-block:1px solid var(--linea);
+    padding-block:1.2rem;
+    overflow-x:auto;
+  }
+  .conto table{width:100%;border-collapse:collapse;min-width:16rem}
+  .conto td{padding:.15rem 0;font-weight:400}
+  .conto td.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .conto td.g{color:var(--muto);white-space:nowrap}
+
+  /* ---- le tre domande ---- */
+  .domanda{
+    border-left:1px solid var(--linea);
+    padding-left:clamp(1rem,3vw,1.6rem);
+    margin-bottom:clamp(1.8rem,4vw,2.4rem);
+  }
+  .domanda:last-child{margin-bottom:0}
+  .domanda .num{
+    font-family:var(--mono);font-size:.8rem;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--muto);display:block;margin-bottom:.5rem;
+  }
+
+  /* ---- quello che qui non trovi ---- */
+  .assenze p{margin-bottom:1.1rem}
+  .trattino{font-family:var(--mono);color:var(--verde)}
+
+  /* ---- la data ---- */
+  .anno{
+    font-family:var(--mono);
+    font-size:clamp(2.6rem,1rem + 9vw,6rem);
+    letter-spacing:.14em;
+    color:var(--verde);
+    line-height:1;
+    display:block;
+    margin-bottom:clamp(1.4rem,4vw,2.4rem);
+  }
+
+  /* ---- footer ---- */
   footer{
-    position:fixed; left:0; right:0; bottom:1.2rem;
-    font-family:"Courier Prime","Courier New",monospace;
-    font-size:.72rem; letter-spacing:.1em; color:var(--text-lo); text-align:center;
+    border-top:1px solid var(--linea);
+    padding:clamp(3rem,7vw,4.5rem) clamp(1.3rem,5vw,3rem);
+    position:relative;z-index:3;
   }
-  footer a{color:var(--text-lo); text-decoration:none; border-bottom:1px solid var(--line)}
-  footer a:hover{color:var(--amber)}
-  footer .sep{margin:0 .5rem; color:var(--line)}
+  footer .inner{max-width:60ch;margin:0 auto}
+  .indirizzo{
+    font-family:var(--mono);font-size:.85rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--verde);margin-bottom:1.2rem;
+  }
+  .costellazione{
+    font-family:var(--mono);
+    font-size:.86rem;line-height:2.4;letter-spacing:.04em;
+    color:var(--muto);
+    margin:2rem 0 1.6rem;
+    list-style:none;
+  }
+  .costellazione a{color:var(--muto);text-decoration:none;border-bottom:1px solid var(--linea)}
+  .costellazione a:hover,.costellazione a:focus{color:var(--carta);border-color:var(--verde)}
+  .costellazione .ruolo{color:var(--linea)}
+  .chiusa{color:var(--muto);font-size:.95rem;line-height:1.7}
+
+  @media (max-width:700px){
+    :root{--ratio:1.333}
+    .band > .inner{max-width:100%}
+    p{max-width:100%}
+  }
 </style>
 </head>
+
 <body>
 <main>
-  <div class="marca">&#9673; Anima Game</div>
-  <h1>Il gioco è <b>già qui</b>.</h1>
-  <div class="riga"></div>
-  <p>Si entra da <b>animagame.io</b>. Ti ci stiamo portando adesso.</p>
-  <a class="porta" href="https://animagame.io/">&gt; entra</a>
+
+  <!-- 1 · l'annuncio e la regola -->
+  <section class="band">
+    <div class="inner">
+      <p class="tag">ANIMA APP · la regola</p>
+      <h1>Una persona.<br>Una sola.<br>Per sempre.</h1>
+      <p>Chi è dentro può farne entrare una.</p>
+      <p>Non dieci, non la rubrica del telefono: <strong>una persona che conosci davvero</strong>, scelta sapendo che non potrai sceglierne un'altra.</p>
+      <p class="secondario">Con un invito solo, nessuno lo spreca.</p>
+    </div>
+  </section>
+
+  <!-- 2 · massima -->
+  <section class="band massima">
+    <div class="inner">
+      <blockquote>Il limite non frena la crescita.<br>La trasforma in una scelta.</blockquote>
+    </div>
+  </section>
+
+  <!-- 3 · il conto -->
+  <section class="band dato">
+    <div class="inner">
+      <h2>Il conto · rifallo a mano, è una moltiplicazione</h2>
+      <p>Si parte da <strong>77</strong>. Ogni giro raddoppia.</p>
+
+      <div class="conto">
+        <table>
+          <tbody>
+            <tr><td class="g">giro&nbsp;&nbsp;0</td><td class="n">77</td></tr>
+            <tr><td class="g">giro&nbsp;&nbsp;3</td><td class="n">616</td></tr>
+            <tr><td class="g">giro 10</td><td class="n">78.848</td></tr>
+            <tr><td class="g">giro 20</td><td class="n">80.740.352</td></tr>
+            <tr><td class="g">giro 26</td><td class="n">5.167.382.528</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Ventisei raddoppi. Questa è la moltiplicazione, <strong>non una previsione</strong>: dà per scontato che ognuno inviti davvero, e non succede mai. Sta qui perché il conto lo possa rifare chiunque, non perché ci aspettiamo che finisca così.</p>
+      <p class="secondario">La matematica è la parte facile. Difficile è la tua unica scelta.</p>
+    </div>
+  </section>
+
+  <!-- 4 · da dove viene -->
+  <section class="band">
+    <div class="inner">
+      <h2>Da dove viene</h2>
+      <p>ANIMA APP nasce da <strong>ANIMA GAME</strong>, un gioco a invito che esiste già.</p>
+      <p>Vuole diventare un modo per <strong>pensare in molti, con l'aiuto delle macchine</strong> — le AI, cioè i programmi che imparano da quello che gli dai da leggere. In una riga: un cervello collettivo. Oggi è una riga, non un prodotto: la scriviamo prima di cominciare, così qualcuno può tenerci d'occhio.</p>
+      <p>Il codice sarà pubblico: <strong>chiunque potrà leggerlo, anche per dirci che è fatto male.</strong> Si chiama <em>open source</em>, e vuol dire esattamente questo.</p>
+    </div>
+  </section>
+
+  <!-- 5 · massima -->
+  <section class="band massima">
+    <div class="inner">
+      <blockquote>Si entra da una persona, non da un bottone.</blockquote>
+    </div>
+  </section>
+
+  <!-- 6 · le domande aperte -->
+  <section class="band">
+    <div class="inner">
+      <h2>Tre cose che non abbiamo risolto</h2>
+      <p class="secondario">Le scriviamo adesso, prima di scrivere una riga di codice, così restano scritte.</p>
+
+      <div class="domanda">
+        <span class="num">Uno</span>
+        <p>Se ognuno invita una persona sola e per sempre, chi arriva per ultimo non invita nessuno: il cerchio si chiude da sé. Non abbiamo ancora deciso se è un difetto o se è il punto.</p>
+      </div>
+
+      <div class="domanda">
+        <span class="num">Due</span>
+        <p>Il codice sarà pubblico, ma le persone sono vere. <em>Chi conosce chi</em> è un dato, e va custodito da qualche parte. Dove, e da chi, è la domanda che viene prima di tutte le altre.</p>
+      </div>
+
+      <div class="domanda">
+        <span class="num">Tre</span>
+        <p>«Cervello collettivo» con dei sensori addosso — oggetti che si indossano e misurano — è un <strong>secondo progetto</strong>, fatto di cose e non di software. Oggi non lo stiamo facendo, e non lo annunciamo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · la data -->
+  <section class="band">
+    <div class="inner">
+      <span class="anno">2027</span>
+      <h1>2027 non è una data d'uscita.</h1>
+      <p><strong>È la data prima della quale non cominciamo.</strong></p>
+      <p>Ce la siamo data noi e serve a noi: prima di ANIMA APP ci sono cose già cominciate che vengono prima, e finché non sono finite qui non si scrive una riga.</p>
+      <p class="secondario">Non è un appuntamento con te.</p>
+    </div>
+  </section>
+
+  <!-- 8 · quello che non c'è -->
+  <section class="band assenze">
+    <div class="inner">
+      <h2>Quello che qui non trovi</h2>
+      <p>Non ci sono schermate: non c'è ancora niente da fotografare.</p>
+      <p>Non c'è una lista d'attesa. Non c'è una mail da lasciare. Non c'è niente da scaricare.</p>
+      <p>Non c'è nessun bottone che dice <em>iscriviti</em>, perché non c'è niente a cui iscriversi.</p>
+      <p>Non ci sono numeri: nessuno ha ancora un punteggio, e finché non ce l'ha qui resta un trattino. <span class="trattino">—</span></p>
+      <p>Non c'è nessun programma che ti segue mentre leggi questa pagina.</p>
+      <p class="secondario">Quando ci sarà qualcosa, sarà qui. Questo indirizzo non manda da nessun'altra parte.</p>
+    </div>
+  </section>
+
+  <!-- 9 · massima di chiusura -->
+  <section class="band massima">
+    <div class="inner">
+      <blockquote>Un invito solo obbliga a pensare a chi.</blockquote>
+    </div>
+  </section>
+
 </main>
+
 <footer>
-  <a href="https://systema77.com">systema77.com — la casa</a><span class="sep">·</span><a href="https://cyberboomer.io">cyberboomer.io — la voce</a>
+  <div class="inner">
+    <p class="indirizzo">anima.solar</p>
+    <p class="chiusa">La scrivono in tre. Non è un'azienda.</p>
+
+    <ul class="costellazione">
+      <li><a href="https://systema77.com">systema77.com</a> <span class="ruolo">—</span> la casa</li>
+      <li><a href="https://cyberboomer.io">cyberboomer.io</a> <span class="ruolo">—</span> la voce</li>
+      <li><a href="https://cyberboomer.ninja">cyberboomer.ninja</a> <span class="ruolo">—</span> le lezioni</li>
+      <li><a href="https://animagame.io">animagame.io</a> <span class="ruolo">—</span> il gioco, a invito</li>
+    </ul>
+
+    <p class="chiusa">ANIMA APP non è l'insegna: è una delle cose che proviamo a fare.</p>
+  </div>
 </footer>
-<script>location.replace("https://animagame.io/");</script>
+
+<script>
+(function(){
+  var m = document.querySelectorAll('.massima blockquote');
+  var ridotto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(ridotto || !('IntersectionObserver' in window)){
+    for(var i=0;i<m.length;i++){ m[i].classList.add('vista'); }
+    return;
+  }
+  var occhio = new IntersectionObserver(function(voci){
+    voci.forEach(function(v){
+      if(v.isIntersecting){ v.target.classList.add('vista'); occhio.unobserve(v.target); }
+    });
+  },{threshold:0.35});
+  for(var j=0;j<m.length;j++){ occhio.observe(m[j]); }
+})();
+</script>
+
+<!-- pagina scritta da D.R.A.G.O., 8 agosto 2026 -->
 </body>
 </html>
