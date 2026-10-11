@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it">
+<html data-casa="solar" lang="it">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,24 +13,26 @@
 <style>
   :root{--bg:#0C0B0E;--amber:#C9A15E;--verde:#38E08A;--hi:#ECE7DF;--lo:#A7A29B;--line:#3A3730}
   *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--bg);color:var(--hi);font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;min-height:100vh;display:flex;flex-direction:column}
+  body{background:var(--bg);color:var(--hi);font-family:'Newsreader',Georgia,serif;min-height:100vh;display:flex;flex-direction:column}
   .cielo{width:100%;background:#000}
   .cielo img{display:block;width:100%;height:auto}
   .cielo .largo{aspect-ratio:3/1}
   .cielo .stretto{display:none;aspect-ratio:2/1;object-fit:cover}
   @media (max-width:700px){.cielo .largo{display:none}.cielo .stretto{display:block}}
   main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 1.25rem 2rem;max-width:40rem;margin:0 auto}
-  .marca{font-family:"Courier Prime","Courier New",monospace;letter-spacing:.4em;font-size:.95rem;color:var(--amber);text-transform:uppercase;margin-bottom:1.6rem}
+  .marca{font-family:'Share Tech Mono',"Courier New",monospace;letter-spacing:.4em;font-size:.95rem;color:var(--amber);text-transform:uppercase;margin-bottom:1.6rem}
   h1{font-size:clamp(1.5rem,4.5vw,2.3rem);font-weight:400;letter-spacing:.02em;line-height:1.4;text-wrap:balance}
   .riga{width:3.5rem;height:1px;background:var(--line);margin:1.8rem auto}
-  .porta{display:inline-block;padding:.7rem 1.5rem;border:1px solid var(--verde);border-radius:2px;font-family:"Courier Prime","Courier New",monospace;font-size:.85rem;letter-spacing:.2em;color:var(--verde);text-decoration:none}
+  .porta{display:inline-block;padding:.7rem 1.5rem;border:1px solid var(--verde);border-radius:2px;font-family:'Share Tech Mono',"Courier New",monospace;font-size:.85rem;letter-spacing:.2em;color:var(--verde);text-decoration:none}
   .porta:hover,.porta:focus-visible{background:rgba(56,224,138,.08);outline:none}
-  .dove{margin-top:.8rem;font-family:"Courier Prime","Courier New",monospace;font-size:.72rem;letter-spacing:.1em;color:var(--lo)}
-  footer{padding:1.2rem;text-align:center;font-family:"Courier Prime","Courier New",monospace;font-size:.72rem;letter-spacing:.1em;color:var(--lo)}
+  .dove{margin-top:.8rem;font-family:'Share Tech Mono',"Courier New",monospace;font-size:.72rem;letter-spacing:.1em;color:var(--lo)}
+  footer{padding:1.2rem;text-align:center;font-family:'Share Tech Mono',"Courier New",monospace;font-size:.72rem;letter-spacing:.1em;color:var(--lo)}
   footer a{color:var(--lo);text-decoration:none;border-bottom:1px solid var(--line)}
   footer a:hover{color:var(--amber)}
   footer .sep{margin:0 .5rem;color:var(--line)}
 </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Share+Tech+Mono&display=swap">
+<link rel="stylesheet" href="galassia.css">
 </head>
 <body>
 <figure class="cielo">
